@@ -3,7 +3,7 @@ phases:
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
-      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.am
+      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION
       - echo Logging in to Docker Hub...
       - DOCKERHUB_CREDS=$(aws secretsmanager get-secret-value --secret-id Dockerhub-credentials-app --query SecretString --output text)
       - DOCKERHUB_USERNAME=$(echo $DOCKERHUB_CREDS | jq -r .DOCKERHUB_USERNAME)
